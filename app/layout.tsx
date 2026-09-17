@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
-import { Sora, Inter, Space_Grotesk } from "next/font/google";
+import { Bungee, Exo_2, Space_Grotesk } from "next/font/google";
 import ToastProvider from "@/components/ui/toast";
 import MainLayout from "@/components/layout/main-layout";
 import "./globals.css";
 
-const sora = Sora({
-  variable: "--font-sora",
+const bungee = Bungee({
+  variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
+  weight: "400",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const exo2 = Exo_2({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -23,7 +25,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "PlayVault - Play. Compete. Level Up.",
+  title: "PlayVault — Play. Compete. Level Up.",
   description:
     "PlayVault is a demo gaming platform where you can play crash games, cards, arcade, dice, slots, and more. Compete in tournaments, climb leaderboards, and level up — all with virtual Demo Coins. No real money involved.",
 };
@@ -32,9 +34,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${sora.variable} ${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${bungee.variable} ${exo2.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-inter bg-background text-text-primary">
+      <body className="min-h-full flex flex-col font-body bg-canvas text-text-primary">
         <ToastProvider>
           <MainLayout>{children}</MainLayout>
         </ToastProvider>

@@ -94,7 +94,7 @@ export default function RouletteGame() {
 
   return (
     <div className="flex h-full min-h-[600px] flex-col lg:flex-row">
-      <div className="flex w-full flex-col gap-3 p-4 lg:w-[340px] lg:shrink-0 lg:overflow-y-auto lg:border-r lg:border-border-muted">
+      <div className="flex w-full flex-col gap-3 p-4 lg:w-[340px] lg:shrink-0 lg:overflow-y-auto lg:border-r lg:border-border">
         <div className="rounded-xl bg-canvas-elevated p-4">
           <p className="mb-2 text-xs font-medium uppercase tracking-wider text-text-secondary">
             Bet Type
@@ -171,7 +171,7 @@ export default function RouletteGame() {
                 key={amount}
                 onClick={() => setBetAmount(amount)}
                 disabled={spinning}
-                className="rounded-lg border border-border-muted bg-canvas-card px-2 py-1.5 text-[11px] font-semibold tabular-nums text-text-secondary transition-colors hover:border-primary hover:text-primary disabled:opacity-40"
+                className="rounded-lg border border-border bg-canvas-card px-2 py-1.5 text-[11px] font-semibold tabular-nums text-text-secondary transition-colors hover:border-gold hover:text-gold disabled:opacity-40"
               >
                 {amount.toLocaleString()}
               </button>
@@ -190,7 +190,7 @@ export default function RouletteGame() {
         {user && (
           <div className="text-center text-xs text-text-secondary">
             Balance:{" "}
-            <span className="font-[family-name:var(--font-mono)] font-semibold tabular-nums text-primary">
+            <span className="font-[family-name:var(--font-mono)] font-semibold tabular-nums text-gold">
               {formatCoins(balance)}
             </span>
           </div>
@@ -200,7 +200,7 @@ export default function RouletteGame() {
       <div className="flex flex-1 flex-col items-center justify-center gap-6 p-6">
         <div className="relative h-72 w-72 md:h-80 md:w-80">
           <div
-            className="absolute inset-0 rounded-full border-4 border-border-muted"
+            className="absolute inset-0 rounded-full border-4 border-border"
             style={{
               transform: `rotate(${wheelRotation}deg)`,
               transition: spinning
@@ -240,7 +240,7 @@ export default function RouletteGame() {
             }}
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-16 w-16 rounded-full bg-canvas-card border-2 border-border-muted" />
+            <div className="h-16 w-16 rounded-full bg-canvas-card border-2 border-border" />
           </div>
         </div>
 

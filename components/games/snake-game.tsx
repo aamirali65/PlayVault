@@ -145,38 +145,38 @@ export default function SnakeGame() {
   return (
     <div className="flex min-h-[calc(100vh-80px)]">
       {/* Side Panel */}
-      <div className="w-full lg:w-[340px] shrink-0 bg-canvas-card border-r border-border-muted p-4 flex flex-col gap-4 overflow-y-auto">
+      <div className="w-full lg:w-[340px] shrink-0 bg-canvas-card border-r border-border p-4 flex flex-col gap-4 overflow-y-auto">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-text-primary">Snake</h2>
-          <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-primary text-canvas">
+          <h2 className="text-lg font-bold text-text-gold">Snake</h2>
+          <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-gold text-canvas">
             DEMO MODE
           </span>
         </div>
 
         {/* Stats */}
         <div className="space-y-2">
-          <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border-muted flex items-center justify-between">
+          <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border flex items-center justify-between">
             <span className="text-xs text-text-secondary">Score</span>
-            <span className="text-lg font-bold text-primary font-[family-name:var(--font-mono)] tabular-nums">
+            <span className="text-lg font-bold text-gold font-[family-name:var(--font-mono)] tabular-nums">
               {state.score}
             </span>
           </div>
-          <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border-muted flex items-center justify-between">
+          <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border flex items-center justify-between">
             <span className="text-xs text-text-secondary">Level</span>
             <span className="text-lg font-bold text-secondary font-[family-name:var(--font-mono)] tabular-nums">
               {state.level}
             </span>
           </div>
-          <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border-muted flex items-center justify-between">
+          <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border flex items-center justify-between">
             <span className="text-xs text-text-secondary">High Score</span>
-            <span className="text-lg font-bold text-accent font-[family-name:var(--font-mono)] tabular-nums">
+            <span className="text-lg font-bold text-gold font-[family-name:var(--font-mono)] tabular-nums">
               {highScore}
             </span>
           </div>
         </div>
 
         {/* Controls Info */}
-        <div className="bg-canvas-elevated rounded-lg px-3 py-2 border border-border-muted">
+        <div className="bg-canvas-elevated rounded-lg px-3 py-2 border border-border">
           <p className="text-[10px] text-text-disabled uppercase tracking-wider mb-2">Controls</p>
           <div className="space-y-1 text-xs text-text-secondary">
             <p>↑ ↓ ← → Arrow keys</p>
@@ -199,7 +199,7 @@ export default function SnakeGame() {
         )}
 
         {gamePhase === "playing" && (
-          <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border-muted text-center">
+          <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border text-center">
             <span className="text-sm text-text-secondary">Use arrow keys or WASD to play</span>
           </div>
         )}
@@ -208,7 +208,7 @@ export default function SnakeGame() {
       {/* Game Area */}
       <div className="flex-1 flex flex-col items-center justify-center p-4 lg:p-8">
         <div className="w-full max-w-[520px]">
-          <div className="bg-canvas-card border border-border-muted rounded-xl overflow-hidden flex items-center justify-center">
+          <div className="bg-canvas-card border border-border rounded-xl overflow-hidden flex items-center justify-center">
             <canvas
               ref={canvasRef}
               width={GRID_SIZE * CELL}
@@ -223,28 +223,28 @@ export default function SnakeGame() {
               <div />
               <button
                 onClick={dpad("up")}
-                className="h-12 rounded-lg bg-canvas-elevated border border-border-muted text-text-primary flex items-center justify-center active:bg-primary/20 active:border-primary/30 cursor-pointer"
+                className="h-12 rounded-lg bg-canvas-elevated border border-border text-text-gold flex items-center justify-center active:bg-gold/20 active:border-gold/30 cursor-pointer"
               >
                 ▲
               </button>
               <div />
               <button
                 onClick={dpad("left")}
-                className="h-12 rounded-lg bg-canvas-elevated border border-border-muted text-text-primary flex items-center justify-center active:bg-primary/20 active:border-primary/30 cursor-pointer"
+                className="h-12 rounded-lg bg-canvas-elevated border border-border text-text-gold flex items-center justify-center active:bg-gold/20 active:border-gold/30 cursor-pointer"
               >
                 ◄
               </button>
               <div />
               <button
                 onClick={dpad("right")}
-                className="h-12 rounded-lg bg-canvas-elevated border border-border-muted text-text-primary flex items-center justify-center active:bg-primary/20 active:border-primary/30 cursor-pointer"
+                className="h-12 rounded-lg bg-canvas-elevated border border-border text-text-gold flex items-center justify-center active:bg-gold/20 active:border-gold/30 cursor-pointer"
               >
                 ►
               </button>
               <div />
               <button
                 onClick={dpad("down")}
-                className="h-12 rounded-lg bg-canvas-elevated border border-border-muted text-text-primary flex items-center justify-center active:bg-primary/20 active:border-primary/30 cursor-pointer"
+                className="h-12 rounded-lg bg-canvas-elevated border border-border text-text-gold flex items-center justify-center active:bg-gold/20 active:border-gold/30 cursor-pointer"
               >
                 ▼
               </button>
@@ -257,10 +257,10 @@ export default function SnakeGame() {
       {/* Game Over Overlay */}
       {gamePhase === "dead" && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-canvas-card border border-border-muted rounded-xl p-8 text-center max-w-sm w-full mx-4">
-            <h2 className="text-3xl font-bold mb-2 text-text-primary">Game Over</h2>
+          <div className="bg-canvas-card border border-border rounded-xl p-8 text-center max-w-sm w-full mx-4">
+            <h2 className="text-3xl font-bold mb-2 text-text-gold">Game Over</h2>
             <p className="text-sm text-text-secondary mb-1">Score</p>
-            <p className="text-4xl font-bold text-primary mb-4 font-[family-name:var(--font-mono)] tabular-nums">
+            <p className="text-4xl font-bold text-gold mb-4 font-[family-name:var(--font-mono)] tabular-nums">
               {state.score}
             </p>
             {state.score >= highScore && state.score > 0 && (

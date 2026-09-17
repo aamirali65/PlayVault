@@ -39,7 +39,7 @@ function BacCardDisplay({ card, index }: { card: BacCard; index: number }) {
 
   return (
     <div
-      className="flex h-24 w-16 flex-col items-center justify-between rounded-lg border-2 border-border-muted bg-white p-1.5 animate-in zoom-in-50 fade-in duration-300"
+      className="flex h-24 w-16 flex-col items-center justify-between rounded-lg border-2 border-border bg-white p-1.5 animate-in zoom-in-50 fade-in duration-300"
       style={{ color: isRed ? "#FF3366" : "#121420", animationDelay: `${index * 120}ms` }}
     >
       <span className="text-xs font-bold leading-none font-[family-name:var(--font-mono)]">{rankText}</span>
@@ -136,7 +136,7 @@ export default function BaccaratGame() {
 
   return (
     <div className="flex h-full min-h-[600px] flex-col lg:flex-row">
-      <div className="flex w-full flex-col gap-3 p-4 lg:w-[340px] lg:shrink-0 lg:overflow-y-auto lg:border-r lg:border-border-muted">
+      <div className="flex w-full flex-col gap-3 p-4 lg:w-[340px] lg:shrink-0 lg:overflow-y-auto lg:border-r lg:border-border">
         {phase === "betting" && (
           <>
             <div className="rounded-xl bg-canvas-elevated p-4">
@@ -155,7 +155,7 @@ export default function BaccaratGame() {
                   <button
                     key={amt}
                     onClick={() => setBetAmount(amt)}
-                    className="rounded-lg border border-border-muted bg-canvas-card px-2 py-1.5 text-[11px] font-semibold tabular-nums text-text-secondary transition-colors hover:border-primary hover:text-primary"
+                    className="rounded-lg border border-border bg-canvas-card px-2 py-1.5 text-[11px] font-semibold tabular-nums text-text-secondary transition-colors hover:border-gold hover:text-gold"
                   >
                     {amt.toLocaleString()}
                   </button>
@@ -276,7 +276,7 @@ export default function BaccaratGame() {
         {user && (
           <div className="text-center text-xs text-text-secondary">
             Balance:{" "}
-            <span className="font-[family-name:var(--font-mono)] font-semibold tabular-nums text-primary">
+            <span className="font-[family-name:var(--font-mono)] font-semibold tabular-nums text-gold">
               {formatCoins(balance)}
             </span>
           </div>
@@ -334,7 +334,7 @@ export default function BaccaratGame() {
                 {playerScore}
               </div>
               {isPlayerNatural && (
-                <div className="text-[10px] font-medium tracking-wider text-primary">NATURAL</div>
+                <div className="text-[10px] font-medium tracking-wider text-gold">NATURAL</div>
               )}
             </div>
 

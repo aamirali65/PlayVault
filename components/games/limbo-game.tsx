@@ -107,8 +107,8 @@ export default function LimboGame() {
 
   return (
     <div className="w-full max-w-7xl mx-auto">
-      <div className="bg-primary/10 border border-primary/30 rounded-xl px-4 py-2 text-center mb-4">
-        <span className="text-primary font-bold text-sm tracking-wider uppercase font-[family-name:var(--font-mono)]">
+      <div className="bg-gold/10 border border-gold/30 rounded-xl px-4 py-2 text-center mb-4">
+        <span className="text-gold font-bold text-sm tracking-wider uppercase font-[family-name:var(--font-mono)]">
           Demo Mode
         </span>
       </div>
@@ -144,15 +144,15 @@ export default function LimboGame() {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-canvas-elevated border border-border-muted rounded-xl p-3 text-center">
+              <div className="bg-canvas-elevated border border-border rounded-xl p-3 text-center">
                 <p className="text-xs text-text-disabled mb-1">Win Chance</p>
-                <p className="text-lg font-bold text-text-primary tabular-nums font-[family-name:var(--font-mono)]">
+                <p className="text-lg font-bold text-text-gold tabular-nums font-[family-name:var(--font-mono)]">
                   {winChance < 0.01 ? "<0.01" : winChance.toFixed(2)}%
                 </p>
               </div>
-              <div className="bg-canvas-elevated border border-border-muted rounded-xl p-3 text-center">
+              <div className="bg-canvas-elevated border border-border rounded-xl p-3 text-center">
                 <p className="text-xs text-text-disabled mb-1">Payout</p>
-                <p className="text-lg font-bold text-primary tabular-nums font-[family-name:var(--font-mono)]">
+                <p className="text-lg font-bold text-gold tabular-nums font-[family-name:var(--font-mono)]">
                   {formatCoins(potentialPayout)}
                 </p>
               </div>
@@ -252,7 +252,7 @@ export default function LimboGame() {
                         ? lastResult.won
                           ? "text-success"
                           : "text-danger"
-                        : "text-primary"
+                        : "text-gold"
                   )}
                 >
                   {animating || lastResult ? (

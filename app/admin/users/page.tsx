@@ -26,7 +26,7 @@ export default function AdminUsersPage() {
           <ArrowLeft className="h-5 w-5" />
         </Link>
         <div>
-          <h1 className="font-sora text-3xl font-bold">Users</h1>
+          <h1 className="font-display text-3xl font-bold">Users</h1>
           <p className="text-text-muted">Manage platform users</p>
         </div>
       </div>
@@ -48,7 +48,7 @@ export default function AdminUsersPage() {
                 <tr key={u.username} className="border-b border-border/50 hover:bg-white/[0.02]">
                   <td className="px-5 py-3 text-sm font-medium text-text-primary">{u.username}</td>
                   <td className="px-5 py-3 text-sm text-text-muted">{u.email}</td>
-                  <td className="px-5 py-3 text-sm text-accent font-medium">{formatCoins(u.balance)}</td>
+                  <td className="px-5 py-3 text-sm text-gold font-medium">{formatCoins(u.balance)}</td>
                   <td className="px-5 py-3 text-sm text-text-primary">{formatNumber(u.gamesPlayed)}</td>
                   <td className="px-5 py-3 text-sm text-text-muted">{u.joinedAt}</td>
                 </tr>

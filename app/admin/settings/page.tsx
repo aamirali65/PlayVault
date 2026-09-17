@@ -25,7 +25,7 @@ export default function AdminSettingsPage() {
           <ArrowLeft className="h-5 w-5" />
         </Link>
         <div>
-          <h1 className="font-sora text-3xl font-bold">Settings</h1>
+          <h1 className="font-display text-3xl font-bold">Settings</h1>
           <p className="text-text-muted">Platform configuration</p>
         </div>
       </div>
@@ -40,7 +40,7 @@ export default function AdminSettingsPage() {
                 type="text"
                 value={siteName}
                 onChange={(e) => setSiteName(e.target.value)}
-                className="h-10 w-full rounded-xl bg-background-secondary border border-border px-4 text-sm text-text-primary outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
+                className="h-10 w-full rounded-xl bg-canvas-card border border-border px-4 text-sm text-text-primary outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold"
               />
             </div>
           </div>
@@ -77,7 +77,7 @@ export default function AdminSettingsPage() {
                 type="number"
                 value={minBet}
                 onChange={(e) => setMinBet(e.target.value)}
-                className="h-10 w-full rounded-xl bg-background-secondary border border-border px-4 text-sm text-text-primary outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
+                className="h-10 w-full rounded-xl bg-canvas-card border border-border px-4 text-sm text-text-primary outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold"
               />
             </div>
             <div>
@@ -86,7 +86,7 @@ export default function AdminSettingsPage() {
                 type="number"
                 value={maxBet}
                 onChange={(e) => setMaxBet(e.target.value)}
-                className="h-10 w-full rounded-xl bg-background-secondary border border-border px-4 text-sm text-text-primary outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
+                className="h-10 w-full rounded-xl bg-canvas-card border border-border px-4 text-sm text-text-primary outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold"
               />
             </div>
           </div>

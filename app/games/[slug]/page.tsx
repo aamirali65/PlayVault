@@ -3,10 +3,8 @@
 import { use, useState, useEffect } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { ArrowLeft, Users, Info, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Users, Info, AlertTriangle, Flame, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { useUserStore } from "@/store/userStore";
 import { randomBetween } from "@/lib/utils";
 
@@ -60,8 +58,8 @@ function LoadingGame() {
   return (
     <div className="flex h-96 items-center justify-center">
       <div className="flex flex-col items-center gap-3">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-accent border-t-transparent" />
-        <p className="text-sm text-text-muted">Loading game...</p>
+        <div className="h-10 w-10 animate-spin rounded-full border-2 border-gold border-t-transparent" />
+        <p className="text-sm font-display text-text-muted tracking-wide uppercase">Loading game...</p>
       </div>
     </div>
   );
@@ -87,36 +85,59 @@ export default function GamePage({ params }: { params: Promise<{ slug: string }>
   if (!game) {
     return (
       <div className="flex min-h-screen items-center justify-center px-4">
-        <Card className="text-center p-8 max-w-md">
+        <div className="text-center p-8 max-w-md rounded-2xl bg-canvas-card border border-border">
           <span className="text-6xl mb-4 block">😕</span>
-          <h1 className="font-sora text-2xl font-bold mb-2">Game Not Found</h1>
+          <h1 className="font-display text-2xl font-bold mb-2">Game Not Found</h1>
           <p className="text-text-muted mb-6">
             The game &quot;{slug}&quot; doesn&apos;t exist or has been removed.
           </p>
           <Link href="/games">
             <Button>Browse All Games</Button>
           </Link>
-        </Card>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-6 md:py-8">
-      <div className="mb-6 flex items-center gap-4">
-        <Link href="/games">
-          <Button variant="ghost" size="sm">
-            <ArrowLeft className="h-4 w-4" />
-            Back
-          </Button>
-        </Link>
-        <div className="flex items-center gap-3">
-          <span className="text-3xl">{game.icon}</span>
-          <div>
-            <h1 className="font-sora text-xl font-bold md:text-2xl">{game.name}</h1>
-            <div className="flex items-center gap-3 mt-0.5">
-              <Badge variant="muted" className="text-[10px]">{game.category}</Badge>
-              <span className="flex items-center gap-1 text-xs text-text-muted">
+      {/* Back Navigation */}
+      <Link href="/games" className="inline-flex items-center gap-1.5 text-text-secondary hover:text-gold transition-colors mb-6 group">
+        <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" />
+        <span className="text-sm font-medium">All Games</span>
+      </Link>
+
+      {/* Game Title Area */}
+      <div className="mb-6">
+        <div className="flex items-center gap-4 mb-3">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-canvas-card border border-border text-4xl shrink-0">
+            {game.icon}
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center gap-3 flex-wrap">
+              <h1 className="font-display text-2xl md:text-3xl font-bold tracking-tight">{game.name}</h1>
+              {playerCount > 2000 && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-orange/10 border border-orange/20 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-orange">
+                  <Flame className="h-3 w-3" />
+                  Hot
+                </span>
+              )}
+              {playerCount > 3000 && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-purple/10 border border-purple/20 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-purple">
+                  <TrendingUp className="h-3 w-3" />
+                  Popular
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-3 mt-1.5">
+              <span className="inline-flex items-center rounded-full bg-surface border border-border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-text-secondary">
+                {game.category}
+              </span>
+              <span className="flex items-center gap-1.5 text-xs text-text-muted">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald" />
+                </span>
                 <Users className="h-3 w-3" />
                 {playerCount.toLocaleString()} playing
               </span>
@@ -125,52 +146,61 @@ export default function GamePage({ params }: { params: Promise<{ slug: string }>
         </div>
       </div>
 
-      <div className="mb-4 rounded-xl border border-accent/30 bg-accent/10 px-4 py-2.5 flex items-center gap-2">
-        <AlertTriangle className="h-4 w-4 text-accent shrink-0" />
-        <span className="text-sm font-medium text-accent">DEMO MODE — Play with virtual Demo Coins. No real money involved.</span>
+      {/* Demo Mode Banner */}
+      <div className="mb-5 rounded-[12px] border border-gold/20 bg-gold/5 px-4 py-3 flex items-center gap-3">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gold/10">
+          <AlertTriangle className="h-4 w-4 text-gold" />
+        </div>
+        <span className="text-sm font-medium text-gold">DEMO MODE — Play with virtual Demo Coins. No real money involved.</span>
       </div>
 
-      <Card className="mb-6 overflow-hidden p-0">
+      {/* Game Container */}
+      <div className="mb-8 rounded-[16px] border border-border overflow-hidden bg-canvas-card">
         {GameComponent ? <GameComponent /> : <LoadingGame />}
-      </Card>
-
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 mb-6">
-        <Card className="md:col-span-2">
-          <p className="text-sm text-text-muted leading-relaxed">{game.description}</p>
-        </Card>
-        <Card>
-          <div className="flex items-center gap-2 mb-2">
-            <Users className="h-4 w-4 text-accent" />
-            <span className="text-sm font-medium">Live Players</span>
-          </div>
-          <p className="text-2xl font-bold text-accent">{playerCount.toLocaleString()}</p>
-        </Card>
       </div>
 
-      <Card className="mb-6">
+      {/* Info Grid */}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 mb-6">
+        <div className="md:col-span-2 hud-panel p-5">
+          <h3 className="font-display text-sm font-semibold text-text-secondary uppercase tracking-wider mb-2">About</h3>
+          <p className="text-sm text-text-muted leading-relaxed">{game.description}</p>
+        </div>
+        <div className="hud-panel p-5">
+          <div className="flex items-center gap-2 mb-2">
+            <Users className="h-4 w-4 text-cyan" />
+            <span className="text-sm font-display font-semibold text-text-secondary uppercase tracking-wider">Live Players</span>
+          </div>
+          <p className="text-3xl font-display font-bold text-gold text-glow-gold">{playerCount.toLocaleString()}</p>
+        </div>
+      </div>
+
+      {/* How to Play Section */}
+      <div className="hud-panel p-5 mb-6">
         <button
           onClick={() => setShowHowToPlay(!showHowToPlay)}
-          className="flex w-full items-center justify-between cursor-pointer"
+          className="flex w-full items-center justify-between cursor-pointer group"
         >
-          <div className="flex items-center gap-2">
-            <Info className="h-4 w-4 text-accent" />
-            <span className="font-sora font-semibold">How to Play</span>
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gold/10">
+              <Info className="h-4 w-4 text-gold" />
+            </div>
+            <span className="font-display font-semibold text-text-primary">How to Play</span>
           </div>
-          <span className="text-text-muted text-sm">{showHowToPlay ? "▲" : "▼"}</span>
+          <span className="text-text-muted text-sm transition-transform duration-200 group-hover:text-gold" style={{ transform: showHowToPlay ? "rotate(180deg)" : "rotate(0deg)" }}>▼</span>
         </button>
         {showHowToPlay && (
-          <div className="mt-4 space-y-2">
+          <div className="mt-5 space-y-3">
             {game.howToPlay.map((step, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent text-xs font-bold">
+              <div key={i} className="flex items-start gap-3.5 rounded-xl bg-surface/50 border border-border p-3.5">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-display font-bold">
                   {i + 1}
                 </span>
-                <p className="text-sm text-text-muted">{step}</p>
+                <p className="text-sm text-text-secondary leading-relaxed pt-0.5">{step}</p>
               </div>
             ))}
           </div>
         )}
-      </Card>
+      </div>
     </div>
   );
 }

@@ -11,7 +11,7 @@ const QUICK_BETS = [50, 100, 250, 500, 1000];
 function CardDisplay({ card, hidden = false }: { card?: TCard | null; hidden?: boolean }) {
   if (!card || hidden) {
     return (
-      <div className="w-32 h-44 rounded-xl border-2 border-dashed border-border-muted bg-canvas-elevated flex items-center justify-center">
+      <div className="w-32 h-44 rounded-xl border-2 border-dashed border-border bg-canvas-elevated flex items-center justify-center">
         <span className="text-text-disabled text-3xl">?</span>
       </div>
     );
@@ -124,10 +124,10 @@ export default function HiLoGame() {
   return (
     <div className="flex min-h-[calc(100vh-80px)]">
       {/* Bet Panel */}
-      <div className="w-full lg:w-[340px] shrink-0 bg-canvas-card border-r border-border-muted p-4 flex flex-col gap-4 overflow-y-auto">
+      <div className="w-full lg:w-[340px] shrink-0 bg-canvas-card border-r border-border p-4 flex flex-col gap-4 overflow-y-auto">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-text-primary">Hi-Lo</h2>
-          <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-primary text-canvas">
+          <h2 className="text-lg font-bold text-text-gold">Hi-Lo</h2>
+          <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-gold text-canvas">
             DEMO MODE
           </span>
         </div>
@@ -151,8 +151,8 @@ export default function HiLoGame() {
                 className={cn(
                   "flex-1 h-7 rounded-md text-[11px] font-semibold transition-colors cursor-pointer disabled:opacity-40",
                   betAmount === b
-                    ? "bg-primary/20 text-primary border border-primary/30"
-                    : "bg-canvas-elevated text-text-secondary border border-border-muted hover:text-text-primary"
+                    ? "bg-gold/20 text-gold border border-gold/30"
+                    : "bg-canvas-elevated text-text-secondary border border-border hover:text-text-gold"
                 )}
               >
                 {b.toLocaleString()}
@@ -162,9 +162,9 @@ export default function HiLoGame() {
         </div>
 
         {/* Balance */}
-        <div className="bg-canvas-elevated rounded-lg px-3 py-2 border border-border-muted">
+        <div className="bg-canvas-elevated rounded-lg px-3 py-2 border border-border">
           <span className="text-xs text-text-secondary">Balance: </span>
-          <span className="text-sm font-semibold text-primary font-[family-name:var(--font-mono)] tabular-nums">
+          <span className="text-sm font-semibold text-gold font-[family-name:var(--font-mono)] tabular-nums">
             {formatCoins(user?.balance ?? 0)}
           </span>
         </div>
@@ -179,13 +179,13 @@ export default function HiLoGame() {
         {/* Stats */}
         {gameActive && (
           <>
-            <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border-muted flex items-center justify-between">
+            <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border flex items-center justify-between">
               <span className="text-xs text-text-secondary">Streak</span>
-              <span className="text-lg font-bold text-text-primary font-[family-name:var(--font-mono)] tabular-nums">
+              <span className="text-lg font-bold text-text-gold font-[family-name:var(--font-mono)] tabular-nums">
                 {streak}
               </span>
             </div>
-            <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border-muted flex items-center justify-between">
+            <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border flex items-center justify-between">
               <span className="text-xs text-text-secondary">Multiplier</span>
               <span className="text-lg font-bold text-success font-[family-name:var(--font-mono)] tabular-nums">
                 {multiplier.toFixed(2)}x

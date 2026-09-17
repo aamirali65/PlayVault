@@ -19,10 +19,10 @@ const NAV_ITEMS = [
 ];
 
 const STATS = [
-  { label: "Total Users", value: 1247, color: "text-accent" },
+  { label: "Total Users", value: 1247, color: "text-gold" },
   { label: "Games Played", value: 45892, color: "text-success" },
   { label: "Revenue", value: 0, suffix: " DEMO", color: "text-text-primary" },
-  { label: "Active Players", value: 89, color: "text-accent" },
+  { label: "Active Players", value: 89, color: "text-gold" },
 ];
 
 const CHART_DATA = [
@@ -45,7 +45,7 @@ export default function AdminPage() {
           <ArrowLeft className="h-5 w-5" />
         </Link>
         <div>
-          <h1 className="font-sora text-3xl font-bold">Admin Dashboard</h1>
+          <h1 className="font-display text-3xl font-bold">Admin Dashboard</h1>
           <p className="text-text-muted">Manage your PlayVault platform</p>
         </div>
       </div>
@@ -72,7 +72,7 @@ export default function AdminPage() {
             <div key={d.label} className="flex flex-1 flex-col items-center gap-2">
               <div className="w-full flex justify-center">
                 <div
-                  className="w-full max-w-[48px] rounded-t-lg bg-accent/20 transition-all duration-500"
+                  className="w-full max-w-[48px] rounded-t-lg bg-gold/20 transition-all duration-500"
                   style={{ height: `${(d.value / maxBar) * 140}px` }}
                 />
               </div>

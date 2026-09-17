@@ -232,8 +232,8 @@ export default function CrashGame() {
 
   return (
     <div className="w-full max-w-7xl mx-auto">
-      <div className="bg-primary/10 border border-primary/30 rounded-xl px-4 py-2 text-center mb-4">
-        <span className="text-primary font-bold text-sm tracking-wider uppercase font-[family-name:var(--font-mono)]">
+      <div className="bg-gold/10 border border-gold/30 rounded-xl px-4 py-2 text-center mb-4">
+        <span className="text-gold font-bold text-sm tracking-wider uppercase font-[family-name:var(--font-mono)]">
           Demo Mode
         </span>
       </div>
@@ -278,7 +278,7 @@ export default function CrashGame() {
               </button>
             ) : gameState === "countdown" ? (
               <div className="text-center py-3">
-                <div className="text-5xl font-black text-primary font-[family-name:var(--font-mono)] tabular-nums animate-pulse">
+                <div className="text-5xl font-black text-gold font-[family-name:var(--font-mono)] tabular-nums animate-pulse">
                   {countdown}
                 </div>
                 <p className="text-text-secondary text-sm mt-1">Starting...</p>
@@ -369,7 +369,7 @@ export default function CrashGame() {
 
             {gameState === "countdown" && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-7xl font-black text-primary tabular-nums animate-pulse font-[family-name:var(--font-mono)]">
+                <div className="text-7xl font-black text-gold tabular-nums animate-pulse font-[family-name:var(--font-mono)]">
                   {countdown}
                 </div>
               </div>
@@ -384,7 +384,7 @@ export default function CrashGame() {
                       ? "text-danger"
                       : gameState === "cashed_out"
                         ? "text-success"
-                        : "text-primary"
+                        : "text-gold"
                   )}
                 >
                   {currentMultiplier.toFixed(2)}x

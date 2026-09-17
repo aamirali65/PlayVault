@@ -10,6 +10,8 @@ import {
   RotateCcw,
   Award,
   Trophy,
+  Gamepad2,
+  Gem,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -81,60 +83,83 @@ export default function ProfilePage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 md:py-12">
-      <Card className="mb-6 p-6">
-        <div className="flex flex-col sm:flex-row items-center gap-6">
-          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-secondary text-background font-sora text-2xl font-bold">
-            {initials}
+      {/* HUD Header */}
+      <Card glow className="mb-6 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-gold/5 via-transparent to-purple/5 pointer-events-none" />
+        <div className="relative flex flex-col sm:flex-row items-center gap-6 p-2">
+          <div className="relative">
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-b from-gold-bright to-gold opacity-40 blur-md" />
+            <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-gold-bright via-gold to-gold-dim text-[#080A12] font-display text-3xl font-bold shadow-[0_0_40px_rgba(255,209,92,0.35)]">
+              {initials}
+            </div>
           </div>
           <div className="text-center sm:text-left flex-1">
-            <h1 className="font-sora text-2xl font-bold">{user.username}</h1>
-            <p className="text-sm text-text-muted">{user.email}</p>
-            <div className="mt-2 flex flex-wrap items-center gap-3 justify-center sm:justify-start">
-              <Badge variant="primary">Level {user.level}</Badge>
+            <div className="flex items-center gap-3 justify-center sm:justify-start">
+              <h1 className="font-display text-2xl font-bold text-text-primary">{user.username}</h1>
+              <Badge variant="gold" className="text-xs">LVL {user.level}</Badge>
+            </div>
+            <p className="text-sm text-text-muted mt-0.5">{user.email}</p>
+            <div className="mt-3 flex flex-wrap items-center gap-3 justify-center sm:justify-start">
               <Badge variant="muted">{formatCoins(user.balance)}</Badge>
-              <span className="text-xs text-text-muted">
-                {user.xp}/{xpForNextLevel} XP
+              <span className="text-xs text-text-secondary font-medium">
+                {user.xp} / {xpForNextLevel} XP
               </span>
             </div>
           </div>
         </div>
 
-        <div className="mt-4 h-2 rounded-full bg-border overflow-hidden">
-          <div
-            className="h-full rounded-full bg-gradient-to-r from-accent to-accent-secondary transition-all duration-500"
-            style={{ width: `${Math.min(xpProgress, 100)}%` }}
-          />
+        <div className="mt-4 px-2 pb-2">
+          <div className="h-2.5 rounded-full bg-surface border border-border overflow-hidden">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-gold via-gold-bright to-gold transition-all duration-500"
+              style={{ width: `${Math.min(xpProgress, 100)}%` }}
+            />
+          </div>
         </div>
       </Card>
 
+      {/* Stats Grid */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 mb-6">
-        <Card className="text-center p-4">
-          <div className="text-2xl font-bold text-accent">{formatNumber(user.gamesPlayed)}</div>
-          <div className="text-xs text-text-muted mt-1">Games Played</div>
+        <Card className="text-center p-4 rounded-2xl border-border hover:border-gold/30 transition-colors">
+          <div className="flex justify-center mb-2">
+            <Gamepad2 className="h-5 w-5 text-gold" />
+          </div>
+          <div className="text-2xl font-bold font-display text-gold">{formatNumber(user.gamesPlayed)}</div>
+          <div className="text-xs text-text-secondary mt-1 uppercase tracking-wider">Games Played</div>
         </Card>
-        <Card className="text-center p-4">
-          <div className="text-2xl font-bold text-success">{formatNumber(user.wins)}</div>
-          <div className="text-xs text-text-muted mt-1">Wins</div>
+        <Card className="text-center p-4 rounded-2xl border-border hover:border-emerald/30 transition-colors">
+          <div className="flex justify-center mb-2">
+            <Trophy className="h-5 w-5 text-emerald" />
+          </div>
+          <div className="text-2xl font-bold font-display text-emerald">{formatNumber(user.wins)}</div>
+          <div className="text-xs text-text-secondary mt-1 uppercase tracking-wider">Wins</div>
         </Card>
-        <Card className="text-center p-4">
-          <div className="text-2xl font-bold text-danger">{formatNumber(user.losses)}</div>
-          <div className="text-xs text-text-muted mt-1">Losses</div>
+        <Card className="text-center p-4 rounded-2xl border-border hover:border-gold/30 transition-colors">
+          <div className="flex justify-center mb-2">
+            <Gem className="h-5 w-5 text-gold" />
+          </div>
+          <div className="text-2xl font-bold font-display text-gold">{formatCoins(user.balance)}</div>
+          <div className="text-xs text-text-secondary mt-1 uppercase tracking-wider">Balance</div>
         </Card>
-        <Card className="text-center p-4">
-          <div className="text-2xl font-bold text-text-primary">{winRate}%</div>
-          <div className="text-xs text-text-muted mt-1">Win Rate</div>
+        <Card className="text-center p-4 rounded-2xl border-border hover:border-purple/30 transition-colors">
+          <div className="flex justify-center mb-2">
+            <Award className="h-5 w-5 text-purple" />
+          </div>
+          <div className="text-2xl font-bold font-display text-purple">{unlockedAchievements.filter((a) => a.unlocked).length}</div>
+          <div className="text-xs text-text-secondary mt-1 uppercase tracking-wider">Achievements</div>
         </Card>
       </div>
 
+      {/* Tabs */}
       <div className="flex gap-1 mb-6 overflow-x-auto pb-1 border-b border-border">
         {tabs.map((t) => (
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-t-lg transition-colors whitespace-nowrap cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-bold rounded-t-lg transition-all whitespace-nowrap cursor-pointer ${
               tab === t.key
-                ? "bg-surface text-accent border border-border border-b-transparent -mb-px"
-                : "text-text-muted hover:text-text-primary hover:bg-surface/50"
+                ? "bg-canvas-card text-gold border border-border border-b-transparent -mb-px shadow-[0_-2px_10px_rgba(255,209,92,0.08)]"
+                : "text-text-secondary hover:text-text-primary hover:bg-canvas-card/50"
             }`}
           >
             <t.icon className="h-4 w-4" />
@@ -143,40 +168,41 @@ export default function ProfilePage() {
         ))}
       </div>
 
+      {/* Overview Tab */}
       {tab === "overview" && (
         <div className="space-y-6">
           <Card>
-            <h3 className="font-sora font-semibold mb-3">Account Summary</h3>
+            <h3 className="font-display font-bold mb-4 text-text-primary">Account Summary</h3>
             <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <span className="text-text-muted">Member Since</span>
-                <p className="font-medium">{formatDate(user.joinedAt)}</p>
+              <div className="rounded-xl bg-surface p-3">
+                <span className="text-text-muted text-xs uppercase tracking-wider">Member Since</span>
+                <p className="font-medium mt-1">{formatDate(user.joinedAt)}</p>
               </div>
-              <div>
-                <span className="text-text-muted">Last Login</span>
-                <p className="font-medium">{formatDate(user.lastLogin)}</p>
+              <div className="rounded-xl bg-surface p-3">
+                <span className="text-text-muted text-xs uppercase tracking-wider">Last Login</span>
+                <p className="font-medium mt-1">{formatDate(user.lastLogin)}</p>
               </div>
-              <div>
-                <span className="text-text-muted">Current Level</span>
-                <p className="font-medium">Level {user.level}</p>
+              <div className="rounded-xl bg-surface p-3">
+                <span className="text-text-muted text-xs uppercase tracking-wider">Current Level</span>
+                <p className="font-medium mt-1 text-gold">Level {user.level}</p>
               </div>
-              <div>
-                <span className="text-text-muted">Total XP</span>
-                <p className="font-medium">{user.xp}</p>
+              <div className="rounded-xl bg-surface p-3">
+                <span className="text-text-muted text-xs uppercase tracking-wider">Total XP</span>
+                <p className="font-medium mt-1">{user.xp}</p>
               </div>
             </div>
           </Card>
 
           <Card>
-            <h3 className="font-sora font-semibold mb-3">Recent Games</h3>
+            <h3 className="font-display font-bold mb-4 text-text-primary">Recent Games</h3>
             {user.gameHistory.length === 0 ? (
               <p className="text-sm text-text-muted">No games played yet.</p>
             ) : (
               <div className="space-y-2">
                 {user.gameHistory.slice(0, 5).map((entry) => (
-                  <div key={entry.id} className="flex items-center justify-between rounded-lg bg-background p-3">
+                  <div key={entry.id} className="flex items-center justify-between rounded-xl bg-surface p-3 border border-border">
                     <div className="flex items-center gap-3">
-                      <span className={`text-lg ${entry.result === "win" ? "text-success" : "text-danger"}`}>
+                      <span className={`text-lg ${entry.result === "win" ? "text-emerald" : "text-rose"}`}>
                         {entry.result === "win" ? "🏆" : "💀"}
                       </span>
                       <div>
@@ -185,7 +211,7 @@ export default function ProfilePage() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className={`text-sm font-semibold ${entry.result === "win" ? "text-success" : "text-danger"}`}>
+                      <p className={`text-sm font-bold ${entry.result === "win" ? "text-emerald" : "text-rose"}`}>
                         {entry.result === "win" ? "+" : "-"}{Math.abs(entry.payout - entry.bet)}
                       </p>
                       <p className="text-xs text-text-muted">Bet: {entry.bet}</p>
@@ -198,6 +224,7 @@ export default function ProfilePage() {
         </div>
       )}
 
+      {/* History Tab */}
       {tab === "history" && (
         <Card>
           {user.gameHistory.length === 0 ? (
@@ -211,9 +238,9 @@ export default function ProfilePage() {
           ) : (
             <div className="space-y-2">
               {user.gameHistory.map((entry) => (
-                <div key={entry.id} className="flex items-center justify-between rounded-lg bg-background p-3">
+                <div key={entry.id} className="flex items-center justify-between rounded-xl bg-surface p-3 border border-border">
                   <div className="flex items-center gap-3">
-                    <span className={`text-lg ${entry.result === "win" ? "text-success" : "text-danger"}`}>
+                    <span className={`text-lg ${entry.result === "win" ? "text-emerald" : "text-rose"}`}>
                       {entry.result === "win" ? "🏆" : "💀"}
                     </span>
                     <div>
@@ -236,18 +263,32 @@ export default function ProfilePage() {
         </Card>
       )}
 
+      {/* Achievements Tab */}
       {tab === "achievements" && (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {unlockedAchievements.map((a) => (
-            <Card key={a.id} className={`p-4 ${a.unlocked ? "" : "opacity-50"}`}>
+            <Card
+              key={a.id}
+              className={`p-4 border transition-colors ${
+                a.unlocked
+                  ? "border-gold/20 shadow-[0_0_20px_rgba(255,209,92,0.06)]"
+                  : "border-border opacity-50"
+              }`}
+            >
               <div className="flex items-start gap-3">
-                <span className="text-2xl">{a.icon}</span>
-                <div className="flex-1">
-                  <h4 className="text-sm font-semibold">{a.name}</h4>
-                  <p className="text-xs text-text-muted">{a.desc}</p>
-                  <div className="mt-2 h-1.5 rounded-full bg-border overflow-hidden">
+                <div className={`flex h-12 w-12 items-center justify-center rounded-xl shrink-0 ${
+                  a.unlocked
+                    ? "bg-gradient-to-br from-gold-bright/20 to-gold/10 border border-gold/25"
+                    : "bg-surface border border-border"
+                }`}>
+                  <span className="text-2xl">{a.icon}</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-sm font-bold">{a.name}</h4>
+                  <p className="text-xs text-text-muted mt-0.5">{a.desc}</p>
+                  <div className="mt-2 h-1.5 rounded-full bg-surface border border-border overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-accent transition-all duration-500"
+                      className="h-full rounded-full bg-gradient-to-r from-gold via-gold-bright to-gold transition-all duration-500"
                       style={{ width: `${(a.progress / a.max) * 100}%` }}
                     />
                   </div>
@@ -256,7 +297,7 @@ export default function ProfilePage() {
                   </p>
                 </div>
                 {a.unlocked && (
-                  <Medal className="h-5 w-5 text-accent shrink-0" />
+                  <Medal className="h-5 w-5 text-gold shrink-0" />
                 )}
               </div>
             </Card>
@@ -264,11 +305,12 @@ export default function ProfilePage() {
         </div>
       )}
 
+      {/* Settings Tab */}
       {tab === "settings" && (
         <Card>
-          <h3 className="font-sora font-semibold mb-4">Settings</h3>
+          <h3 className="font-display font-bold mb-4 text-text-primary">Settings</h3>
           <div className="space-y-4">
-            <div className="flex items-center justify-between rounded-lg bg-background p-4">
+            <div className="flex items-center justify-between rounded-xl bg-surface p-4 border border-border">
               <div>
                 <p className="text-sm font-medium">Reset Demo Balance</p>
                 <p className="text-xs text-text-muted">Reset your balance back to 10,000 DEMO Coins.</p>

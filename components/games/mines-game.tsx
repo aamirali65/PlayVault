@@ -92,10 +92,10 @@ export default function MinesGame() {
   return (
     <div className="flex min-h-[calc(100vh-80px)]">
       {/* Bet Panel */}
-      <div className="w-full lg:w-[340px] shrink-0 bg-canvas-card border-r border-border-muted p-4 flex flex-col gap-4 overflow-y-auto">
+      <div className="w-full lg:w-[340px] shrink-0 bg-canvas-card border-r border-border p-4 flex flex-col gap-4 overflow-y-auto">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-text-primary">Mines</h2>
-          <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-primary text-canvas">
+          <h2 className="text-lg font-bold text-text-gold">Mines</h2>
+          <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-gold text-canvas">
             DEMO MODE
           </span>
         </div>
@@ -119,8 +119,8 @@ export default function MinesGame() {
                 className={cn(
                   "flex-1 h-7 rounded-md text-[11px] font-semibold transition-colors cursor-pointer disabled:opacity-40",
                   betAmount === b
-                    ? "bg-primary/20 text-primary border border-primary/30"
-                    : "bg-canvas-elevated text-text-secondary border border-border-muted hover:text-text-primary"
+                    ? "bg-gold/20 text-gold border border-gold/30"
+                    : "bg-canvas-elevated text-text-secondary border border-border hover:text-text-gold"
                 )}
               >
                 {b.toLocaleString()}
@@ -132,7 +132,7 @@ export default function MinesGame() {
         {/* Mine Count */}
         <div>
           <label className="text-xs text-text-secondary mb-1.5 block">
-            Mines: <span className="text-primary font-bold">{mineCount}</span>
+            Mines: <span className="text-gold font-bold">{mineCount}</span>
           </label>
           <input
             type="range"
@@ -150,9 +150,9 @@ export default function MinesGame() {
         </div>
 
         {/* Balance */}
-        <div className="bg-canvas-elevated rounded-lg px-3 py-2 border border-border-muted">
+        <div className="bg-canvas-elevated rounded-lg px-3 py-2 border border-border">
           <span className="text-xs text-text-secondary">Balance: </span>
-          <span className="text-sm font-semibold text-primary font-[family-name:var(--font-mono)] tabular-nums">
+          <span className="text-sm font-semibold text-gold font-[family-name:var(--font-mono)] tabular-nums">
             {formatCoins(user?.balance ?? 0)}
           </span>
         </div>
@@ -166,7 +166,7 @@ export default function MinesGame() {
 
         {gameActive && (
           <>
-            <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border-muted flex items-center justify-between">
+            <div className="bg-canvas-elevated rounded-lg px-4 py-3 border border-border flex items-center justify-between">
               <span className="text-xs text-text-secondary">Multiplier</span>
               <span className="text-lg font-bold text-success font-[family-name:var(--font-mono)] tabular-nums">
                 {currentMultiplier.toFixed(2)}x
@@ -211,7 +211,7 @@ export default function MinesGame() {
               const isMine = mines[i];
               const tileResult = tiles[i];
 
-              let bgClass = "bg-canvas-card border-border-muted hover:brightness-150 cursor-pointer";
+              let bgClass = "bg-canvas-card border-border hover:brightness-150 cursor-pointer";
               let content = null;
 
               if (isRevealed) {

@@ -66,8 +66,8 @@ export default function CoinflipGame() {
 
   return (
     <div className="w-full max-w-7xl mx-auto">
-      <div className="bg-primary/10 border border-primary/30 rounded-xl px-4 py-2 text-center mb-4">
-        <span className="text-primary font-bold text-sm tracking-wider uppercase font-[family-name:var(--font-mono)]">
+      <div className="bg-gold/10 border border-gold/30 rounded-xl px-4 py-2 text-center mb-4">
+        <span className="text-gold font-bold text-sm tracking-wider uppercase font-[family-name:var(--font-mono)]">
           Demo Mode
         </span>
       </div>
@@ -109,8 +109,8 @@ export default function CoinflipGame() {
               className={cn(
                 "w-full h-14 rounded-[12px] text-lg font-bold transition-all duration-150 cursor-pointer",
                 choice === "heads"
-                  ? "bg-primary text-canvas shadow-[0_0_20px_rgba(0,245,160,0.3)]"
-                  : "bg-canvas-elevated text-text-primary border border-border-muted hover:border-primary/30"
+                  ? "bg-gold text-canvas shadow-[0_0_20px_rgba(0,245,160,0.3)]"
+                  : "bg-canvas-elevated text-text-primary border border-border hover:border-gold/30"
               )}
             >
               Heads
@@ -121,8 +121,8 @@ export default function CoinflipGame() {
               className={cn(
                 "w-full h-14 rounded-[12px] text-lg font-bold transition-all duration-150 cursor-pointer",
                 choice === "tails"
-                  ? "bg-accent text-white shadow-[0_0_20px_rgba(112,0,255,0.3)]"
-                  : "bg-canvas-elevated text-text-primary border border-border-muted hover:border-accent/30"
+                  ? "bg-purple text-white shadow-[0_0_20px_rgba(255,215,0,0.3)]"
+                  : "bg-canvas-elevated text-text-primary border border-border hover:border-gold/30"
               )}
             >
               Tails
@@ -181,8 +181,8 @@ export default function CoinflipGame() {
                 className={cn(
                   "w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold shrink-0 font-[family-name:var(--font-mono)] animate-chip-in",
                   h.result === "heads"
-                    ? "bg-primary/15 text-primary border border-primary/30"
-                    : "bg-accent/15 text-accent border border-accent/30",
+                    ? "bg-gold/15 text-gold border border-gold/30"
+                    : "bg-gold/15 text-gold border border-gold/30",
                   !h.won && "opacity-40"
                 )}
               >
@@ -205,10 +205,10 @@ export default function CoinflipGame() {
                     coinState === "spinning"
                       ? "animate-slot-spin border-text-disabled"
                       : result === "heads"
-                        ? "bg-primary border-primary text-canvas shadow-[0_0_40px_rgba(0,245,160,0.3)]"
+                        ? "bg-gold border-gold text-canvas shadow-[0_0_40px_rgba(0,245,160,0.3)]"
                         : result === "tails"
-                          ? "bg-accent border-accent text-white shadow-[0_0_40px_rgba(112,0,255,0.3)]"
-                          : "bg-canvas-elevated border-border-muted text-text-secondary"
+                          ? "bg-purple border-purple text-white shadow-[0_0_40px_rgba(255,215,0,0.3)]"
+                          : "bg-canvas-elevated border-border text-text-secondary"
                   )}
                   style={{
                     animation: coinState === "spinning"
@@ -265,11 +265,11 @@ export default function CoinflipGame() {
                 </div>
                 <div>
                   <p className="text-text-disabled text-xs">Heads</p>
-                  <p className="text-primary font-bold tabular-nums font-[family-name:var(--font-mono)]">{headsPct}%</p>
+                  <p className="text-gold font-bold tabular-nums font-[family-name:var(--font-mono)]">{headsPct}%</p>
                 </div>
                 <div>
                   <p className="text-text-disabled text-xs">Tails</p>
-                  <p className="text-accent font-bold tabular-nums font-[family-name:var(--font-mono)]">{tailsPct}%</p>
+                  <p className="text-gold font-bold tabular-nums font-[family-name:var(--font-mono)]">{tailsPct}%</p>
                 </div>
               </div>
             </Card>

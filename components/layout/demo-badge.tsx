@@ -9,16 +9,16 @@ export default function DemoBadge() {
   if (dismissed) return null;
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center gap-2 bg-accent/15 border-b border-accent/30 px-4 py-2 backdrop-blur-sm">
-      <Coins className="w-4 h-4 text-accent shrink-0" />
-      <span className="text-xs font-semibold text-accent text-center">
-        DEMO MODE - All balances are virtual Demo Coins. No real money.
+    <div className="relative z-[60] flex items-center justify-center gap-2 bg-gradient-to-r from-gold/10 via-orange/10 to-gold/10 border-b border-gold/20 px-4 py-2">
+      <Coins className="w-3.5 h-3.5 text-gold shrink-0" />
+      <span className="text-[11px] font-bold text-gold/90 text-center">
+        DEMO MODE — All balances are virtual Demo Coins. No real money involved.
       </span>
       <button
         onClick={() => setDismissed(true)}
-        className="shrink-0 p-1 rounded text-accent/60 hover:text-accent transition-colors"
+        className="shrink-0 p-0.5 rounded text-gold/40 hover:text-gold transition-colors"
       >
-        <X className="w-3.5 h-3.5" />
+        <X className="w-3 h-3" />
       </button>
     </div>
   );

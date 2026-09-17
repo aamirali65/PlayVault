@@ -227,7 +227,7 @@ export default function AndarBaharGame() {
           </div>
           <div className="text-sm text-text-secondary">
             Balance:{" "}
-            <span className="font-[family-name:var(--font-mono)] font-semibold tabular-nums text-primary">
+            <span className="font-[family-name:var(--font-mono)] font-semibold tabular-nums text-gold">
               {formatCoins(balance)}
             </span>
           </div>
@@ -305,7 +305,7 @@ export default function AndarBaharGame() {
             {phase === "dealing" && (
               <div className="text-center">
                 <div className="text-[10px] text-text-secondary">Multiplier</div>
-                <div className="font-[family-name:var(--font-mono)] text-lg font-bold tabular-nums text-primary">
+                <div className="font-[family-name:var(--font-mono)] text-lg font-bold tabular-nums text-gold">
                   {currentMultiplier.toFixed(2)}x
                 </div>
               </div>
@@ -313,7 +313,7 @@ export default function AndarBaharGame() {
             {phase === "result" && result && (
               <div className="text-center">
                 <div className="text-[10px] text-text-secondary">Payout</div>
-                <div className="font-[family-name:var(--font-mono)] text-lg font-bold tabular-nums text-primary">
+                <div className="font-[family-name:var(--font-mono)] text-lg font-bold tabular-nums text-gold">
                   {getMultiplier(result.cardsDealt, 51 - result.cardsDealt).toFixed(2)}x
                 </div>
               </div>
@@ -358,7 +358,7 @@ export default function AndarBaharGame() {
         </div>
 
         {phase === "idle" && (
-          <div className="w-full max-w-md rounded-xl bg-canvas-card p-5 border border-border-muted">
+          <div className="w-full max-w-md rounded-xl bg-canvas-card p-5 border border-border">
             <div className="space-y-4">
               <div className="text-center">
                 <div className="mb-1 text-xs text-text-secondary">Select your side</div>
@@ -481,7 +481,7 @@ export default function AndarBaharGame() {
             <div className="text-sm text-text-secondary animate-pulse">Dealing...</div>
             <div className="mt-1 text-xs text-text-secondary">
               Multiplier:{" "}
-              <span className="font-medium font-[family-name:var(--font-mono)] tabular-nums text-primary">
+              <span className="font-medium font-[family-name:var(--font-mono)] tabular-nums text-gold">
                 {currentMultiplier.toFixed(2)}x
               </span>
             </div>

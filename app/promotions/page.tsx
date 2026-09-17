@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Gift, Zap, Star, Calendar, Check } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Gift, Zap, Star, Calendar, Check, Sparkles, Coins } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/toast";
@@ -92,18 +91,28 @@ export default function PromotionsPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 md:py-12">
-      <div className="mb-8">
-        <h1 className="font-sora text-3xl font-bold">Promotions</h1>
-        <p className="mt-1 text-text-muted">Claim exclusive bonuses and rewards</p>
+      <div className="mb-10">
+        <div className="flex items-center gap-4">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gold/10 border border-gold/20">
+            <Sparkles className="h-7 w-7 text-gold" />
+          </div>
+          <div>
+            <h1 className="font-display text-4xl font-extrabold tracking-tight">
+              <span className="gaming-gradient-text">PROMOTIONS</span>
+            </h1>
+            <p className="mt-1 text-text-secondary text-sm">Claim exclusive bonuses and rewards</p>
+          </div>
+        </div>
         {totalClaimed > 0 && (
-          <div className="mt-3 inline-flex items-center gap-2 rounded-xl bg-surface border border-border px-4 py-2">
-            <span className="text-sm text-text-muted">Total Claimed:</span>
-            <span className="text-sm font-semibold text-accent">{formatCoins(totalClaimed)}</span>
+          <div className="mt-4 inline-flex items-center gap-3 hud-panel rounded-xl px-5 py-3">
+            <Coins className="h-5 w-5 text-gold" />
+            <span className="text-sm text-text-secondary">Total Claimed:</span>
+            <span className="text-sm font-bold text-gold text-glow-gold">{formatCoins(totalClaimed)}</span>
           </div>
         )}
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2">
         {PROMOTIONS_DATA.map((promo) => {
           const isClaimed = claimedIds.includes(promo.id);
           const daysLeft = Math.ceil(
@@ -111,16 +120,23 @@ export default function PromotionsPage() {
           );
 
           return (
-            <Card key={promo.id} className={`flex flex-col ${isClaimed ? "opacity-70" : ""}`}>
+            <div
+              key={promo.id}
+              className={`gaming-card rounded-2xl p-5 flex flex-col ${isClaimed ? "opacity-60" : ""}`}
+            >
               <div className="flex items-start gap-4">
-                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
-                  isClaimed ? "bg-success/10 text-success" : "bg-accent/10 text-accent"
-                }`}>
+                <div
+                  className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border ${
+                    isClaimed
+                      ? "bg-success/10 text-success border-success/20"
+                      : "bg-gold/10 text-gold border-gold/20"
+                  }`}
+                >
                   {ICONS[promo.icon]}
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-bold">{promo.title}</h3>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="text-lg font-bold font-display">{promo.title}</h3>
                     {isClaimed && <Badge variant="success">Claimed</Badge>}
                   </div>
                   <p className="mt-1 text-sm text-text-muted">{promo.description}</p>
@@ -128,19 +144,19 @@ export default function PromotionsPage() {
               </div>
 
               <div className="mt-4 flex items-center justify-between">
-                <div>
-                  <span className="text-xs text-text-muted">Reward</span>
-                  <p className="text-lg font-bold text-accent">{formatCoins(promo.reward)}</p>
+                <div className="hud-panel rounded-lg px-3 py-2">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-text-muted">Reward</span>
+                  <p className="text-lg font-bold text-gold text-glow-gold">{formatCoins(promo.reward)}</p>
                 </div>
-                <div className="text-right">
-                  <span className="text-xs text-text-muted">Expires in</span>
+                <div className="hud-panel rounded-lg px-3 py-2 text-right">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-text-muted">Expires in</span>
                   <p className="text-sm font-medium text-text-primary">{daysLeft} days</p>
                 </div>
               </div>
 
               <div className="mt-4">
                 {isClaimed ? (
-                  <div className="flex items-center justify-center gap-1.5 rounded-lg bg-success/10 py-2 text-sm font-medium text-success">
+                  <div className="flex items-center justify-center gap-1.5 rounded-xl bg-success/10 border border-success/20 py-2.5 text-sm font-bold text-success">
                     <Check className="h-4 w-4" />
                     Claimed
                   </div>
@@ -150,11 +166,12 @@ export default function PromotionsPage() {
                     className="w-full"
                     onClick={() => claimPromo(promo)}
                   >
+                    <Gift className="h-4 w-4" />
                     Claim Reward
                   </Button>
                 )}
               </div>
-            </Card>
+            </div>
           );
         })}
       </div>

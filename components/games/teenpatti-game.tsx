@@ -74,7 +74,7 @@ function TPCardDisplay({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center rounded-lg select-none border-2 border-border-muted bg-white transition-all duration-500",
+        "flex flex-col items-center justify-center rounded-lg select-none border-2 border-border bg-white transition-all duration-500",
         small ? "h-14 w-10 text-xs" : "h-20 w-14 text-sm",
         flipped && "animate-[flipCard_0.5s_ease-out]"
       )}
@@ -417,7 +417,7 @@ export default function TeenPattiGame() {
   return (
     <div className="relative flex min-h-[600px] flex-col" style={{ background: "#090A0F" }}>
       <div className="flex items-center justify-between p-4">
-        <h2 className="text-xl font-bold text-text-primary">Teen Patti</h2>
+        <h2 className="text-xl font-bold text-text-gold">Teen Patti</h2>
         <div className="flex items-center gap-4">
           <div className="text-xs text-text-secondary">
             W:{" "}
@@ -427,7 +427,7 @@ export default function TeenPattiGame() {
           </div>
           <div className="text-sm text-text-secondary">
             Balance:{" "}
-            <span className="font-[family-name:var(--font-mono)] font-semibold tabular-nums text-primary">
+            <span className="font-[family-name:var(--font-mono)] font-semibold tabular-nums text-gold">
               {formatCoins(balance)}
             </span>
           </div>
@@ -481,7 +481,7 @@ export default function TeenPattiGame() {
               style={{ background: "rgba(9,10,15,0.85)", border: "1px solid #1E2235" }}
             >
               <div className="mb-0.5 text-[10px] uppercase tracking-wider text-text-secondary">Pot</div>
-              <div className="font-[family-name:var(--font-mono)] text-2xl font-bold tabular-nums text-primary">
+              <div className="font-[family-name:var(--font-mono)] text-2xl font-bold tabular-nums text-gold">
                 {formatCoins(pot)}
               </div>
               {message && (
@@ -517,21 +517,21 @@ export default function TeenPattiGame() {
 
             <button
               onClick={() => setShowHelp(!showHelp)}
-              className="text-[11px] text-primary/70 transition-colors hover:text-primary"
+              className="text-[11px] text-gold/70 transition-colors hover:text-gold"
             >
               {showHelp ? "Hide" : "How to Play"}
             </button>
 
             {showHelp && (
-              <div className="w-full max-w-md rounded-xl bg-canvas-card p-4 text-left border border-border-muted">
+              <div className="w-full max-w-md rounded-xl bg-canvas-card p-4 text-left border border-border">
                 <div className="space-y-2 text-xs text-text-secondary">
-                  <p><span className="font-semibold text-primary">Blind:</span> Bet without seeing cards. Half stake. Max 2000 blind bet.</p>
-                  <p><span className="font-semibold text-primary">Seen:</span> View cards first. Double stakes.</p>
-                  <p><span className="font-semibold text-primary">Chaal:</span> Call the current bet to stay in.</p>
-                  <p><span className="font-semibold text-primary">Pack:</span> Fold and lose your bets.</p>
-                  <p><span className="font-semibold text-primary">Show:</span> When 2 players remain, compare cards.</p>
+                  <p><span className="font-semibold text-gold">Blind:</span> Bet without seeing cards. Half stake. Max 2000 blind bet.</p>
+                  <p><span className="font-semibold text-gold">Seen:</span> View cards first. Double stakes.</p>
+                  <p><span className="font-semibold text-gold">Chaal:</span> Call the current bet to stay in.</p>
+                  <p><span className="font-semibold text-gold">Pack:</span> Fold and lose your bets.</p>
+                  <p><span className="font-semibold text-gold">Show:</span> When 2 players remain, compare cards.</p>
                   <div className="pt-2" style={{ borderTop: "1px solid #1E2235" }}>
-                    <p className="mb-1 font-medium text-text-primary">Hand Rankings (high → low):</p>
+                    <p className="mb-1 font-medium text-text-gold">Hand Rankings (high → low):</p>
                     <p>Trail → Pure Seq → Seq → Color → Pair → High Card</p>
                   </div>
                 </div>
@@ -549,7 +549,7 @@ export default function TeenPattiGame() {
                   type="number"
                   value={betAmount}
                   onChange={(e) => setBetAmount(Math.max(100, Number(e.target.value)))}
-                  className="input-field w-24 px-3 py-1.5 text-center font-[family-name:var(--font-mono)] text-sm tabular-nums text-text-primary"
+                  className="input-field w-24 px-3 py-1.5 text-center font-[family-name:var(--font-mono)] text-sm tabular-nums text-text-gold"
                 />
               </div>
               <div className="flex gap-1">
@@ -589,7 +589,7 @@ export default function TeenPattiGame() {
                   type="number"
                   value={betAmount}
                   onChange={(e) => setBetAmount(Math.max(100, Number(e.target.value)))}
-                  className="input-field w-24 px-3 py-1.5 text-center font-[family-name:var(--font-mono)] text-sm tabular-nums text-text-primary"
+                  className="input-field w-24 px-3 py-1.5 text-center font-[family-name:var(--font-mono)] text-sm tabular-nums text-text-gold"
                 />
               </div>
               <div className="flex gap-1">
@@ -630,7 +630,7 @@ export default function TeenPattiGame() {
 
         {(gameState === "reveal" || gameState === "result") && (
           <div className="flex flex-col items-center gap-3">
-            <div className="text-lg font-bold text-primary">{message}</div>
+            <div className="text-lg font-bold text-gold">{message}</div>
             {gameState === "result" && (
               <button onClick={startRound} className="btn-primary px-6 py-2 text-sm font-bold">
                 Play Again

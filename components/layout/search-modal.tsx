@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Search, X, Gamepad2, Trophy, Radio, Swords, Gift, BarChart3 } from "lucide-react";
-import { Card } from "@/components/ui/card";
 
 interface SearchResult {
   id: string;
@@ -68,41 +67,38 @@ export function SearchModal() {
         e.preventDefault();
         setOpen((o) => !o);
       }
-      if (e.key === "/" && !["INPUT", "TEXTAREA"].includes((e.target as HTMLElement).tagName)) {
-        e.preventDefault();
-        setOpen(true);
-      }
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
   useEffect(() => {
-    if (open) {
-      setTimeout(() => inputRef.current?.focus(), 100);
-    }
+    if (open) setTimeout(() => inputRef.current?.focus(), 100);
   }, [open]);
 
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh]">
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setOpen(false)} />
-      <div className="relative z-10 w-full max-w-lg mx-4">
-        <Card className="p-0 overflow-hidden shadow-2xl">
+    <div className="fixed inset-0 z-[70] flex items-start justify-center pt-[15vh]">
+      <div className="fixed inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setOpen(false)} />
+      <div className="relative z-10 w-full max-w-lg mx-4 animate-scale-in">
+        <div className="rounded-[16px] bg-canvas-card border border-border overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)]">
           <div className="flex items-center gap-3 border-b border-border px-4">
-            <Search className="h-5 w-5 text-text-muted shrink-0" />
+            <Search className="h-5 w-5 text-gold shrink-0" />
             <input
               ref={inputRef}
               type="text"
               placeholder="Search games, pages..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="h-12 flex-1 bg-transparent text-sm text-text-primary outline-none placeholder:text-text-muted"
+              className="h-12 flex-1 bg-transparent text-sm text-text-primary font-semibold outline-none placeholder:text-text-muted"
             />
+            <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-[4px] bg-surface text-[10px] text-text-muted font-mono border border-border">
+              ESC
+            </kbd>
             <button
               onClick={() => setOpen(false)}
-              className="shrink-0 text-text-muted hover:text-text-primary transition-colors cursor-pointer"
+              className="text-text-muted hover:text-gold transition-colors cursor-pointer"
             >
               <X className="h-4 w-4" />
             </button>
@@ -114,13 +110,13 @@ export function SearchModal() {
                 <button
                   key={item.id}
                   onClick={() => handleSelect(item.href)}
-                  className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-white/5 cursor-pointer"
+                  className="flex w-full items-center gap-3 rounded-[10px] px-3 py-2.5 text-left text-sm transition-all hover:bg-gold/5 cursor-pointer group"
                 >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-surface text-text-muted">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-surface text-text-muted group-hover:bg-gold/10 group-hover:text-gold transition-all">
                     {item.icon}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <span className="font-medium text-text-primary">{item.title}</span>
+                    <span className="font-bold text-text-primary group-hover:text-gold transition-colors">{item.title}</span>
                     <span className="ml-2 text-xs text-text-muted">{item.description}</span>
                   </div>
                 </button>
@@ -129,17 +125,18 @@ export function SearchModal() {
           )}
 
           {query.length > 0 && results.length === 0 && (
-            <div className="px-4 py-8 text-center text-sm text-text-muted">
-              No results found for &quot;{query}&quot;
+            <div className="px-4 py-10 text-center">
+              <span className="text-3xl block mb-2">🎮</span>
+              <p className="text-sm text-text-muted font-semibold">No results for &quot;{query}&quot;</p>
             </div>
           )}
 
           {query.length === 0 && (
-            <div className="px-4 py-4 text-center text-xs text-text-muted">
-              Type to search...
+            <div className="px-4 py-4 text-center text-xs text-text-muted font-semibold">
+              Start typing to search...
             </div>
           )}
-        </Card>
+        </div>
       </div>
     </div>
   );

@@ -157,7 +157,7 @@ export default function BlackjackGame() {
 
   return (
     <div className="flex h-full min-h-[600px] flex-col lg:flex-row">
-      <div className="flex w-full flex-col gap-3 p-4 lg:w-[340px] lg:shrink-0 lg:overflow-y-auto lg:border-r lg:border-border-muted">
+      <div className="flex w-full flex-col gap-3 p-4 lg:w-[340px] lg:shrink-0 lg:overflow-y-auto lg:border-r lg:border-border">
         {gameState === "betting" && (
           <>
             <div className="rounded-xl bg-canvas-elevated p-4">
@@ -176,7 +176,7 @@ export default function BlackjackGame() {
                   <button
                     key={amt}
                     onClick={() => setBet(amt)}
-                    className="rounded-lg border border-border-muted bg-canvas-card px-2 py-1.5 text-[11px] font-semibold tabular-nums text-text-secondary transition-colors hover:border-primary hover:text-primary"
+                    className="rounded-lg border border-border bg-canvas-card px-2 py-1.5 text-[11px] font-semibold tabular-nums text-text-secondary transition-colors hover:border-gold hover:text-gold"
                   >
                     {amt.toLocaleString()}
                   </button>
@@ -245,7 +245,7 @@ export default function BlackjackGame() {
         {user && (
           <div className="text-center text-xs text-text-secondary">
             Balance:{" "}
-            <span className="font-[family-name:var(--font-mono)] font-semibold tabular-nums text-primary">
+            <span className="font-[family-name:var(--font-mono)] font-semibold tabular-nums text-gold">
               {formatCoins(balance)}
             </span>
           </div>
@@ -305,7 +305,7 @@ export default function BlackjackGame() {
               {history.slice(0, 15).map((h, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-1.5 rounded-lg border border-border-muted bg-canvas-card px-2 py-1 text-[10px]"
+                  className="flex items-center gap-1.5 rounded-lg border border-border bg-canvas-card px-2 py-1 text-[10px]"
                 >
                   <span className="font-bold" style={{ color: resultColor(h.result) }}>
                     {h.result.toUpperCase()}

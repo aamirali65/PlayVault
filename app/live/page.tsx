@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Radio } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Radio, Users } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { formatNumber } from "@/lib/utils";
 
 interface GameDef {
@@ -55,41 +55,61 @@ export default function LivePage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 md:py-12">
-      <div className="mb-8">
-        <div className="flex items-center gap-3">
-          <Radio className="h-8 w-8 text-success" />
-          <div>
-            <h1 className="font-sora text-3xl font-bold">Live Now</h1>
-            <p className="text-text-muted">See who is playing right now</p>
+      <div className="mb-8 text-center md:text-left">
+        <div className="flex items-center justify-center md:justify-start gap-3">
+          <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald/20 to-emerald/5 border border-emerald/20">
+            <Radio className="h-6 w-6 text-emerald" />
+            <span className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-emerald animate-pulse border-2 border-background" />
           </div>
-        </div>
-
-        <div className="mt-4 inline-flex items-center gap-2 rounded-xl bg-surface border border-border px-4 py-2">
-          <span className="h-2 w-2 rounded-full bg-success animate-pulse" />
-          <span className="text-sm text-text-muted">Total Players Online:</span>
-          <span className="text-sm font-bold text-success">{formatNumber(totalOnline)}</span>
+          <div>
+            <h1 className="font-display text-3xl font-extrabold text-text-primary">
+              LIVE NOW
+            </h1>
+            <p className="text-text-secondary">See who is playing right now</p>
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-        {GAMES.map((game) => (
-          <Link key={game.slug} href={`/games/${game.slug}`}>
-            <Card hover className="group cursor-pointer p-0 overflow-hidden">
-              <div className={`flex aspect-[4/3] items-center justify-center bg-gradient-to-br ${game.gradient}`}>
-                <span className="text-4xl transition-transform group-hover:scale-110">{game.icon}</span>
-              </div>
-              <div className="p-3">
-                <h3 className="text-sm font-semibold truncate">{game.name}</h3>
-                <div className="mt-1.5 flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
-                  <span className="text-xs text-text-muted">
-                    {formatNumber(players[game.slug])} online
+      <div className="hud-panel p-4 md:p-5 mb-6">
+        <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald animate-pulse" />
+            <Users className="h-4 w-4 text-text-muted" />
+          </div>
+          <span className="text-sm text-text-muted">Players Online</span>
+          <span className="text-lg font-extrabold text-emerald">{formatNumber(totalOnline)}</span>
+        </div>
+      </div>
+
+      <div className="overflow-x-auto pb-4 -mx-4 px-4 md:mx-0 md:px-0">
+        <div className="flex gap-4 min-w-max md:min-w-0 md:grid md:grid-cols-3 lg:grid-cols-5">
+          {GAMES.map((game) => (
+            <Link key={game.slug} href={`/games/${game.slug}`}>
+              <div className="gaming-card p-0 overflow-hidden cursor-pointer group">
+                <div className={`relative flex aspect-[4/3] items-center justify-center bg-gradient-to-br ${game.gradient}`}>
+                  <span className="text-4xl transition-transform group-hover:scale-110 group-hover:rotate-3 duration-300">
+                    {game.icon}
                   </span>
+                  <div className="absolute top-3 right-3">
+                    <Badge variant="live">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald animate-pulse" />
+                      LIVE
+                    </Badge>
+                  </div>
+                </div>
+                <div className="p-3.5">
+                  <h3 className="text-sm font-bold text-text-primary truncate">{game.name}</h3>
+                  <div className="mt-2 flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald animate-pulse" />
+                    <span className="text-xs font-medium text-text-muted">
+                      {formatNumber(players[game.slug])} playing
+                    </span>
+                  </div>
                 </div>
               </div>
-            </Card>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

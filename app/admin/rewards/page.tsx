@@ -22,7 +22,7 @@ export default function AdminRewardsPage() {
           <ArrowLeft className="h-5 w-5" />
         </Link>
         <div>
-          <h1 className="font-sora text-3xl font-bold">Reward Settings</h1>
+          <h1 className="font-display text-3xl font-bold">Reward Settings</h1>
           <p className="text-text-muted">Configure reward distribution</p>
         </div>
       </div>
@@ -42,7 +42,7 @@ export default function AdminRewardsPage() {
               {REWARDS.map((r) => (
                 <tr key={r.name} className="border-b border-border/50 hover:bg-white/[0.02]">
                   <td className="px-5 py-3 text-sm font-medium text-text-primary">{r.name}</td>
-                  <td className="px-5 py-3 text-sm text-accent font-medium">{r.amount.toLocaleString()} DEMO</td>
+                  <td className="px-5 py-3 text-sm text-gold font-medium">{r.amount.toLocaleString()} DEMO</td>
                   <td className="px-5 py-3 text-sm text-text-muted">{r.frequency}</td>
                   <td className="px-5 py-3">
                     <Badge variant={r.active ? "success" : "muted"}>

@@ -323,8 +323,8 @@ export default function AviatorGame() {
 
   return (
     <div className="w-full max-w-7xl mx-auto">
-      <div className="bg-primary/10 border border-primary/30 rounded-xl px-4 py-2 text-center mb-4">
-        <span className="text-primary font-bold text-sm tracking-wider uppercase font-[family-name:var(--font-mono)]">
+      <div className="bg-gold/10 border border-gold/30 rounded-xl px-4 py-2 text-center mb-4">
+        <span className="text-gold font-bold text-sm tracking-wider uppercase font-[family-name:var(--font-mono)]">
           Demo Mode
         </span>
       </div>
@@ -358,7 +358,7 @@ export default function AviatorGame() {
         {phase === "countdown" && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              <span className="text-7xl font-black text-primary tabular-nums animate-pulse font-[family-name:var(--font-mono)]">
+              <span className="text-7xl font-black text-gold tabular-nums animate-pulse font-[family-name:var(--font-mono)]">
                 {countdown}
               </span>
             </div>
@@ -370,7 +370,7 @@ export default function AviatorGame() {
             <span
               className={cn(
                 "text-7xl font-black tabular-nums drop-shadow-lg font-[family-name:var(--font-mono)] transition-colors duration-300",
-                phase === "flownAway" ? "text-danger" : "text-primary"
+                phase === "flownAway" ? "text-danger" : "text-gold"
               )}
             >
               {currentMultiplier.toFixed(2)}x
@@ -521,7 +521,7 @@ export default function AviatorGame() {
             )}
 
             {prevServerSeedHash && (
-              <div className="border-t border-border-muted pt-3 mt-2">
+              <div className="border-t border-border pt-3 mt-2">
                 <p className="text-xs text-text-disabled uppercase tracking-wider mb-1">Previous Server Seed</p>
                 <p className="text-xs text-text-secondary font-mono break-all">{prevServerSeedHash}</p>
               </div>

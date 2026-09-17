@@ -10,15 +10,15 @@ const QUICK_BETS = [50, 100, 250, 500, 1000];
 
 function binColor(mult: number): string {
   if (mult >= 10) return "text-success";
-  if (mult >= 3) return "text-primary";
-  if (mult >= 1) return "text-text-primary";
+  if (mult >= 3) return "text-gold";
+  if (mult >= 1) return "text-text-gold";
   return "text-danger";
 }
 
 function binBg(mult: number): string {
   if (mult >= 10) return "bg-success/20 border-success/30";
-  if (mult >= 3) return "bg-primary/20 border-primary/30";
-  if (mult >= 1) return "bg-canvas-elevated border-border-muted";
+  if (mult >= 3) return "bg-gold/20 border-gold/30";
+  if (mult >= 1) return "bg-canvas-elevated border-border";
   return "bg-danger/20 border-danger/30";
 }
 
@@ -98,10 +98,10 @@ export default function PlinkoGame() {
   return (
     <div className="flex min-h-[calc(100vh-80px)]">
       {/* Bet Panel */}
-      <div className="w-full lg:w-[340px] shrink-0 bg-canvas-card border-r border-border-muted p-4 flex flex-col gap-4 overflow-y-auto">
+      <div className="w-full lg:w-[340px] shrink-0 bg-canvas-card border-r border-border p-4 flex flex-col gap-4 overflow-y-auto">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-text-primary">Plinko</h2>
-          <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-primary text-canvas">
+          <h2 className="text-lg font-bold text-text-gold">Plinko</h2>
+          <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-gold text-canvas">
             DEMO MODE
           </span>
         </div>
@@ -125,8 +125,8 @@ export default function PlinkoGame() {
                 className={cn(
                   "flex-1 h-7 rounded-md text-[11px] font-semibold transition-colors cursor-pointer disabled:opacity-40",
                   betAmount === b
-                    ? "bg-primary/20 text-primary border border-primary/30"
-                    : "bg-canvas-elevated text-text-secondary border border-border-muted hover:text-text-primary"
+                    ? "bg-gold/20 text-gold border border-gold/30"
+                    : "bg-canvas-elevated text-text-secondary border border-border hover:text-text-gold"
                 )}
               >
                 {b.toLocaleString()}
@@ -147,8 +147,8 @@ export default function PlinkoGame() {
                 className={cn(
                   "flex-1 h-9 rounded-lg text-xs font-bold transition-colors cursor-pointer disabled:opacity-40",
                   rows === r
-                    ? "bg-primary/20 text-primary border border-primary/30"
-                    : "bg-canvas-elevated text-text-secondary border border-border-muted hover:text-text-primary"
+                    ? "bg-gold/20 text-gold border border-gold/30"
+                    : "bg-canvas-elevated text-text-secondary border border-border hover:text-text-gold"
                 )}
               >
                 {r}
@@ -169,8 +169,8 @@ export default function PlinkoGame() {
                 className={cn(
                   "flex-1 h-9 rounded-lg text-xs font-bold capitalize transition-colors cursor-pointer disabled:opacity-40",
                   risk === r
-                    ? "bg-primary/20 text-primary border border-primary/30"
-                    : "bg-canvas-elevated text-text-secondary border border-border-muted hover:text-text-primary"
+                    ? "bg-gold/20 text-gold border border-gold/30"
+                    : "bg-canvas-elevated text-text-secondary border border-border hover:text-text-gold"
                 )}
               >
                 {r}
@@ -180,9 +180,9 @@ export default function PlinkoGame() {
         </div>
 
         {/* Balance */}
-        <div className="bg-canvas-elevated rounded-lg px-3 py-2 border border-border-muted">
+        <div className="bg-canvas-elevated rounded-lg px-3 py-2 border border-border">
           <span className="text-xs text-text-secondary">Balance: </span>
-          <span className="text-sm font-semibold text-primary font-[family-name:var(--font-mono)] tabular-nums">
+          <span className="text-sm font-semibold text-gold font-[family-name:var(--font-mono)] tabular-nums">
             {formatCoins(user?.balance ?? 0)}
           </span>
         </div>
@@ -222,7 +222,7 @@ export default function PlinkoGame() {
       <div className="flex-1 flex flex-col items-center justify-center p-4 lg:p-8">
         <div className="w-full max-w-[600px]">
           {/* Peg Pyramid */}
-          <div className="bg-canvas-card border border-border-muted rounded-xl p-6 overflow-hidden">
+          <div className="bg-canvas-card border border-border rounded-xl p-6 overflow-hidden">
             <div className="flex flex-col items-center gap-1.5">
               {Array.from({ length: rows }).map((_, row) => {
                 const posAtRow = ballPath.slice(0, row + 1).reduce((s, v) => s + v, 0);
@@ -236,7 +236,7 @@ export default function PlinkoGame() {
                           className={cn(
                             "w-2.5 h-2.5 rounded-full transition-all duration-150",
                             isActive
-                              ? "bg-primary shadow-[0_0_10px_rgba(0,245,160,0.6)] scale-150"
+                              ? "bg-gold shadow-[0_0_10px_rgba(0,245,160,0.6)] scale-150"
                               : "bg-text-disabled/30"
                           )}
                         />

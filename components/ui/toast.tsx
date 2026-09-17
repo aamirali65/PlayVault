@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { CheckCircle, XCircle, Info } from "lucide-react";
 
 type ToastVariant = "success" | "error" | "info";
 
@@ -41,7 +42,7 @@ function ToastProvider({ children }: { children: React.ReactNode }) {
     (message: string, variant: ToastVariant = "info") => {
       const id = ++toastId;
       setToasts((prev) => [...prev, { id, message, variant }]);
-      const timer = setTimeout(() => dismiss(id), 3000);
+      const timer = setTimeout(() => dismiss(id), 3500);
       timersRef.current.set(id, timer);
     },
     [dismiss]
@@ -50,7 +51,7 @@ function ToastProvider({ children }: { children: React.ReactNode }) {
   return (
     <ToastContext.Provider value={{ toast }}>
       {children}
-      <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2">
+      <div className="fixed bottom-20 md:bottom-6 right-4 z-[100] flex flex-col gap-2 pointer-events-none">
         {toasts.map((t) => (
           <ToastItem key={t.id} toast={t} onDismiss={() => dismiss(t.id)} />
         ))}
@@ -62,25 +63,32 @@ function ToastProvider({ children }: { children: React.ReactNode }) {
 export default ToastProvider;
 
 function ToastItem({ toast, onDismiss }: { toast: Toast; onDismiss: () => void }) {
-  const variantStyles: Record<ToastVariant, string> = {
-    success: "border-success/30 bg-canvas-elevated text-success",
-    error: "border-danger/30 bg-canvas-elevated text-danger",
-    info: "border-secondary/30 bg-canvas-elevated text-secondary",
+  const icons = {
+    success: <CheckCircle className="h-5 w-5 text-emerald shrink-0" />,
+    error: <XCircle className="h-5 w-5 text-rose shrink-0" />,
+    info: <Info className="h-5 w-5 text-cyan shrink-0" />,
+  };
+
+  const borders = {
+    success: "border-emerald/30",
+    error: "border-rose/30",
+    info: "border-cyan/30",
   };
 
   return (
     <div
       className={[
-        "flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium backdrop-blur-sm",
-        "animate-in slide-in-from-right-5 fade-in duration-300",
-        variantStyles[toast.variant],
+        "pointer-events-auto flex items-center gap-3 rounded-[12px] border bg-canvas-card px-4 py-3 text-sm font-bold backdrop-blur-md",
+        "animate-slide-in-right shadow-[0_8px_30px_rgba(0,0,0,0.4)]",
+        borders[toast.variant],
       ].join(" ")}
       role="alert"
     >
-      <span className="flex-1">{toast.message}</span>
+      {icons[toast.variant]}
+      <span className="flex-1 text-text-primary">{toast.message}</span>
       <button
         onClick={onDismiss}
-        className="shrink-0 opacity-60 hover:opacity-100 transition-opacity cursor-pointer"
+        className="shrink-0 text-text-muted hover:text-text-primary transition-colors cursor-pointer"
       >
         ✕
       </button>

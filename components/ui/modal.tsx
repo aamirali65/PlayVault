@@ -30,13 +30,14 @@ function Modal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
         onClick={onClose}
       />
       <div
         className={[
-          "relative z-10 w-full max-w-md rounded-2xl bg-surface border border-border p-6",
-          "shadow-xl shadow-black/40",
+          "relative z-10 w-full max-w-md rounded-[20px] bg-canvas-card border border-border p-6",
+          "shadow-[0_25px_60px_rgba(0,0,0,0.6)]",
+          "animate-scale-in",
           className,
         ].join(" ")}
         role="dialog"
@@ -47,16 +48,16 @@ function Modal({
         {(title || onClose) && (
           <div className="flex items-center justify-between mb-5">
             {title && (
-              <h2 className="text-lg font-semibold text-text-primary font-sora">
+              <h2 className="text-lg font-extrabold text-text-primary font-display">
                 {title}
               </h2>
             )}
             {onClose && (
               <button
                 onClick={onClose}
-                className="ml-auto p-1 rounded-lg text-text-muted hover:text-text-primary hover:bg-white/5 transition-colors cursor-pointer"
+                className="ml-auto w-8 h-8 flex items-center justify-center rounded-[8px] text-text-muted hover:text-gold hover:bg-gold/10 transition-all cursor-pointer"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M18 6L6 18" />
                   <path d="M6 6l12 12" />
                 </svg>

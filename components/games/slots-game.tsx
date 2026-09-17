@@ -80,10 +80,10 @@ export default function SlotsGame() {
   return (
     <div className="flex min-h-[calc(100vh-80px)]">
       {/* Bet Panel */}
-      <div className="w-full lg:w-[340px] shrink-0 bg-canvas-card border-r border-border-muted p-4 flex flex-col gap-4 overflow-y-auto">
+      <div className="w-full lg:w-[340px] shrink-0 bg-canvas-card border-r border-border p-4 flex flex-col gap-4 overflow-y-auto">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-text-primary">Slots</h2>
-          <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-primary text-canvas">
+          <h2 className="text-lg font-bold text-text-gold">Slots</h2>
+          <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-gold text-canvas">
             DEMO MODE
           </span>
         </div>
@@ -107,8 +107,8 @@ export default function SlotsGame() {
                 className={cn(
                   "flex-1 h-7 rounded-md text-[11px] font-semibold transition-colors cursor-pointer disabled:opacity-40",
                   bet === b
-                    ? "bg-primary/20 text-primary border border-primary/30"
-                    : "bg-canvas-elevated text-text-secondary border border-border-muted hover:text-text-primary"
+                    ? "bg-gold/20 text-gold border border-gold/30"
+                    : "bg-canvas-elevated text-text-secondary border border-border hover:text-text-gold"
                 )}
               >
                 {b.toLocaleString()}
@@ -118,9 +118,9 @@ export default function SlotsGame() {
         </div>
 
         {/* Balance */}
-        <div className="bg-canvas-elevated rounded-lg px-3 py-2 border border-border-muted">
+        <div className="bg-canvas-elevated rounded-lg px-3 py-2 border border-border">
           <span className="text-xs text-text-secondary">Balance: </span>
-          <span className="text-sm font-semibold text-primary font-[family-name:var(--font-mono)] tabular-nums">
+          <span className="text-sm font-semibold text-gold font-[family-name:var(--font-mono)] tabular-nums">
             {formatCoins(balance)}
           </span>
         </div>
@@ -135,19 +135,19 @@ export default function SlotsGame() {
         </button>
 
         {/* Payout Table */}
-        <div className="bg-canvas-elevated rounded-lg border border-border-muted p-3">
+        <div className="bg-canvas-elevated rounded-lg border border-border p-3">
           <p className="text-[10px] text-text-disabled uppercase tracking-wider mb-2">Payouts</p>
           <div className="grid grid-cols-2 gap-1">
             {SYMBOLS.map((sym) => (
               <div key={sym.id} className="flex justify-between items-center bg-canvas rounded px-2 py-1">
-                <span className="text-xs text-text-primary">{sym.id}</span>
+                <span className="text-xs text-text-gold">{sym.id}</span>
                 <span className="text-xs font-bold text-success font-[family-name:var(--font-mono)] tabular-nums">
                   {sym.payout3}x
                 </span>
               </div>
             ))}
             <div className="flex justify-between items-center bg-canvas rounded px-2 py-1 col-span-2">
-              <span className="text-xs text-text-primary">2x match</span>
+              <span className="text-xs text-text-gold">2x match</span>
               <span className="text-xs font-bold text-success font-[family-name:var(--font-mono)] tabular-nums">2x</span>
             </div>
           </div>
@@ -161,9 +161,9 @@ export default function SlotsGame() {
               {history.map((h) => (
                 <div
                   key={h.timestamp}
-                  className="flex items-center justify-between text-[11px] bg-canvas-elevated border border-border-muted rounded-lg px-2.5 py-1.5"
+                  className="flex items-center justify-between text-[11px] bg-canvas-elevated border border-border rounded-lg px-2.5 py-1.5"
                 >
-                  <span className="font-[family-name:var(--font-mono)] tabular-nums text-text-primary">
+                  <span className="font-[family-name:var(--font-mono)] tabular-nums text-text-gold">
                     {h.symbols.join(" | ")}
                   </span>
                   <span
@@ -185,7 +185,7 @@ export default function SlotsGame() {
       <div className="flex-1 flex flex-col items-center justify-center p-4 lg:p-8">
         <div className="w-full max-w-[520px]">
           {/* Reels */}
-          <div className="bg-canvas-card border border-border-muted rounded-xl p-8 mb-4">
+          <div className="bg-canvas-card border border-border rounded-xl p-8 mb-4">
             <div className="flex items-center justify-center gap-4">
               {reels.map((sym, i) => (
                 <div
@@ -195,7 +195,7 @@ export default function SlotsGame() {
                     "bg-canvas-elevated",
                     lastWin && lastWin.payout > 0 && lastWin.symbols[i] === lastWin.symbols[0]
                       ? "border-success"
-                      : "border-border-muted"
+                      : "border-border"
                   )}
                 >
                   <span

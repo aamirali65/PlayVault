@@ -32,7 +32,7 @@ export default function AdminAnalyticsPage() {
           <ArrowLeft className="h-5 w-5" />
         </Link>
         <div>
-          <h1 className="font-sora text-3xl font-bold">Analytics</h1>
+          <h1 className="font-display text-3xl font-bold">Analytics</h1>
           <p className="text-text-muted">Platform performance metrics</p>
         </div>
       </div>
@@ -47,7 +47,7 @@ export default function AdminAnalyticsPage() {
               <div key={d.day} className="flex flex-1 flex-col items-center gap-2">
                 <div className="w-full flex justify-center">
                   <div
-                    className="w-full max-w-[40px] rounded-t-lg bg-accent/20"
+                    className="w-full max-w-[40px] rounded-t-lg bg-gold/20"
                     style={{ height: `${(d.games / maxDaily) * 120}px` }}
                   />
                 </div>
@@ -94,7 +94,7 @@ export default function AdminAnalyticsPage() {
               <div className="flex-1">
                 <div className="h-2 rounded-full bg-white/5">
                   <div
-                    className="h-full rounded-full bg-accent/30"
+                    className="h-full rounded-full bg-gold/30"
                     style={{ width: `${g.pct}%` }}
                   />
                 </div>

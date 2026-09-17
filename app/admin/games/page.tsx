@@ -41,7 +41,7 @@ export default function AdminGamesPage() {
           <ArrowLeft className="h-5 w-5" />
         </Link>
         <div>
-          <h1 className="font-sora text-3xl font-bold">Games</h1>
+          <h1 className="font-display text-3xl font-bold">Games</h1>
           <p className="text-text-muted">Manage game availability</p>
         </div>
       </div>

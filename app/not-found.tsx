@@ -1,20 +1,24 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { RotateCcw } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 text-center">
-      <div className="mb-6 text-8xl">🕹️</div>
-      <h1 className="font-sora text-4xl font-bold">Game Over!</h1>
-      <p className="mt-3 text-lg text-text-muted">Page Not Found</p>
-      <p className="mt-1 max-w-md text-sm text-text-muted">
+    <div className="flex min-h-[80vh] flex-col items-center justify-center px-4 text-center">
+      <div className="mb-6 text-[120px] leading-none select-none">🎮</div>
+      <h1 className="font-display text-6xl font-extrabold tracking-tight">
+        <span className="gaming-gradient-text">GAME OVER</span>
+      </h1>
+      <p className="mt-4 text-xl font-display font-bold text-text-primary">LEVEL NOT FOUND</p>
+      <p className="mt-3 max-w-md text-sm text-text-muted leading-relaxed">
         The page you are looking for does not exist or has been moved.
-        Better luck next time!
+        Better luck next time, player.
       </p>
-      <Link
-        href="/"
-        className="mt-8 inline-flex h-12 items-center justify-center rounded-xl bg-accent px-7 text-sm font-medium text-background transition-all hover:brightness-110 active:scale-[0.97]"
-      >
-        Go Home
+      <Link href="/" className="mt-8">
+        <Button variant="gold" size="lg">
+          <RotateCcw className="h-5 w-5" />
+          TRY AGAIN
+        </Button>
       </Link>
     </div>
   );

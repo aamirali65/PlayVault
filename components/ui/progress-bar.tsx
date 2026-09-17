@@ -23,20 +23,22 @@ function ProgressBar({
       {(label || showPercentage) && (
         <div className="flex items-center justify-between">
           {label && (
-            <span className="text-sm font-medium text-text-primary">{label}</span>
+            <span className="text-sm font-bold text-text-primary">{label}</span>
           )}
           {showPercentage && (
-            <span className="text-xs text-text-muted tabular-nums">
+            <span className="text-xs text-gold font-extrabold tabular-nums">
               {percentage}%
             </span>
           )}
         </div>
       )}
-      <div className="h-2 w-full overflow-hidden rounded-full bg-white/5">
+      <div className="h-3 w-full overflow-hidden rounded-full bg-surface border border-border">
         <div
-          className="h-full rounded-full bg-accent transition-all duration-500 ease-out"
+          className="h-full rounded-full bg-gradient-to-r from-gold via-gold-bright to-gold transition-all duration-700 ease-out relative"
           style={{ width: `${percentage}%` }}
-        />
+        >
+          <div className="absolute inset-0 shimmer-bg rounded-full" />
+        </div>
       </div>
     </div>
   );

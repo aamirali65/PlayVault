@@ -23,7 +23,7 @@ export default function AdminTournamentsPage() {
           <ArrowLeft className="h-5 w-5" />
         </Link>
         <div>
-          <h1 className="font-sora text-3xl font-bold">Tournaments</h1>
+          <h1 className="font-display text-3xl font-bold">Tournaments</h1>
           <p className="text-text-muted">Manage tournaments</p>
         </div>
       </div>
@@ -43,10 +43,10 @@ export default function AdminTournamentsPage() {
               {TOURNAMENTS.map((t) => (
                 <tr key={t.name} className="border-b border-border/50 hover:bg-white/[0.02]">
                   <td className="px-5 py-3 text-sm font-medium text-text-primary">{t.name}</td>
-                  <td className="px-5 py-3 text-sm text-accent font-medium">{formatCoins(t.prize)}</td>
+                  <td className="px-5 py-3 text-sm text-gold font-medium">{formatCoins(t.prize)}</td>
                   <td className="px-5 py-3 text-sm text-text-muted">{t.participants}</td>
                   <td className="px-5 py-3">
-                    <Badge variant="primary">Upcoming</Badge>
+                    <Badge variant="gold">Upcoming</Badge>
                   </td>
                 </tr>
               ))}
